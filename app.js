@@ -1,22 +1,28 @@
-var sys = require('sys'), 
+var sys = require('sys'),
+    prompt = require('prompt'),
     xmpp = require('node-xmpp'),
     colors = require('colors'),
     events = require('events'),
-    nodeXmppClient = require('node-xmpp-client');
+    nodeXmppClient = require('xmpp-client');
+
+  prompt.start();
 
 var client = new nodeXmppClient.Client({
     jid: "eassie@roidsoftware.com",
     password: "12345678"
-  }, function() {
-    console.log('client created');    
-  });
+  }, function(){});
 
 client.on('online', function() {
     console.log('I m online');
     var pubsubClient = client.pubsub('pubsub.roidsoftware.com');
-    pubsubClient.createNodeWithName("node27", function() {
-      console.log('created');
-  });
+
+    prompt.get('nodeName', function(err, result) {
+      console.log('  nodeName: ' + result.nodeName);
+      pubsubClient.createNodeWithName(result.nodeName, function() {
+        console.log('created');
+      });
+    });
+
 });
 
 // client.on('online', function() {

@@ -9,8 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "xmpp-client": "git://github.com/tananrules/node-xmpp-client.git",
     "colors": "^1.1.2",
-    "node-xmpp": "^1.0.2"
+    "node-xmpp": "^1.0.2",
+    "prompt": "^0.2.14",
+    "xmpp-client": "git://github.com/tananrules/node-xmpp-client.git"
   }
 }
