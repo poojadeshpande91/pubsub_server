@@ -3,6 +3,7 @@ var sys = require('sys'),
     xmpp = require('node-xmpp'),
     colors = require('colors'),
     events = require('events'),
+    parseString = require('xml2js').parseString;
     nodeXmppClient = require('xmpp-client');
 
 prompt.start();
@@ -62,10 +63,14 @@ prompt.get('choice', function(err, result) {
           content;
 
       prompt.get(['node', 'content'], function(err, result) {
-        node = result.node;
-        content = result.content;
         debugger
-        pubsubClient.publish(node, content);
+        node = result.node;
+        // content = result.content
+        parseString(result.content, function (err, xml) {
+          content = xml;
+          debugger
+          pubsubClient.publish(node, content);
+        });
       });
     break;
 
