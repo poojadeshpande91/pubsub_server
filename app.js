@@ -21,6 +21,7 @@ console.log('Create Node without Name - 2');
 console.log('Discover all Nodes - 3');
 console.log('Delete Node - 4');
 console.log('Publish to a Node - 5');
+console.log('Subscribe to a Node - 6');
 console.log('Enter Appropiate Choice');
 
 
@@ -63,17 +64,23 @@ prompt.get('choice', function(err, result) {
           content;
 
       prompt.get(['node', 'content'], function(err, result) {
-        debugger
         node = result.node;
         // content = result.content
-        parseString(result.content, function (err, xml) {
-          content = xml;
-          debugger
-          pubsubClient.publish(node, content);
-        });
+        pubsubClient.publish(result.node, result.content);
       });
     break;
 
+    case 6:
+      var node;
+      prompt.get('nodeName', function(err, result) {
+        pubsubClient.subscribe(result.nodeName, function (pubsub, event, stanza) {
+          console.log(stanza.toString());
+        }, function (subscription, subscriptionId) {
+          console.log("Status: " + subscription);
+          console.log("Subscribed to " + subscriptionId);
+        });
+      });
+    break;
     default:
       console.log('Wrong choice or input');
     break;
