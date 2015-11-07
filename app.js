@@ -77,7 +77,7 @@ prompt.get('choice', function(err, result) {
     case 6:
       var node;
       prompt.get('nodeName', function(err, result) {
-        pubsubClient.subscribe(result.nodeName, function (pubsub, event, stanza) {
+        pubsubClient.subscribe(result.nodeName, function (event, stanza) {
           console.log(stanza.toString());
         }, function (subscription, subscriptionId) {
           console.log("Status: " + subscription);
