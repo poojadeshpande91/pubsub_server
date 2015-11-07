@@ -12,8 +12,12 @@ var choice;
 
 var client = new nodeXmppClient.Client({
     jid: "eassie@roidsoftware.com",
-    password: "12345678"
+    password: "[Replace with the PASSWORD]"
   }, function(){});
+
+client.on('online', function () {
+  client.presence();
+})
 
 
 console.log('Create Node with Name - 1');

@@ -15,6 +15,6 @@
     "node-xmpp": "^1.0.2",
     "prompt": "^0.2.14",
     "xml2js": "^0.4.15",
-    "xmpp-client": "git://github.com/tananrules/node-xmpp-client.git"
+    "xmpp-client": "git://github.com/venkatesh3007/xmpp-client.git"
   }
 }
